@@ -49,7 +49,7 @@ public class DataPojo {
     }
 
     private Long generateRandomLong() {
-        return new RandomDataGenerator().nextLong(1L, 100000L);
+        return new RandomDataGenerator().nextLong(20000000L, 40000000L);
     }
 
     private Double generateRandomDouble() {

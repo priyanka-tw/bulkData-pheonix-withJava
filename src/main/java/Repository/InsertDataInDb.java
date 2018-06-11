@@ -23,7 +23,6 @@ public class InsertDataInDb {
     private static void createTable() {
         Statement statement = null;
         try {
-
             statement = dbConnection.createStatement();
             statement.executeUpdate(CREATE_QUERY);
             dbConnection.commit();
@@ -49,8 +48,6 @@ public class InsertDataInDb {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-
     }
 
 }
