@@ -1,0 +1,23 @@
+plugins {
+    id 'java'
+}
+
+group 'GenerateHbaseData'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+configurations.all {
+    exclude module: 'slf4j-log4j12'
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile group: 'org.apache.commons', name: 'commons-math3', version: '3.2'
+    compile group: 'org.apache.phoenix', name: 'phoenix-core', version: '4.13.1-HBase-1.3'
+
+}
