@@ -8,12 +8,14 @@ public class DataPojo {
     private String accountType;
     private Long accountNumber;
     private String assetClassL1;
+    private String assetClassL2;
     private String accountGroupId;
     private Double balance;
     private String currency;
 
     private static final String[] ACCOUNT_TYPE_ARRAY = {"SAVING", "SAVING_PLUS", "CURRENT"};
     private static final String[] ASSET_CLASS_ARRAY = {"CASH", "EQUITY"};
+    private static final String[] ASSET_CLASS_LTWO_ARRAY = {"CASH_EQUIVALANT", "INVESTMENT"};
     private static final String[] ACCOUNT_GROUP_ARRAY = {"111", "222", "333", "444", "555", "666"};
     private static final String[] CURRENCY_ARRAY = {"USD", "CAD", "INR"};
 
@@ -23,6 +25,7 @@ public class DataPojo {
         this.accountType = getRandomElement(ACCOUNT_TYPE_ARRAY);
         this.accountNumber = generateRandomLong();
         this.assetClassL1 = getRandomElement(ASSET_CLASS_ARRAY);
+        this.assetClassL2 = getRandomElement(ASSET_CLASS_LTWO_ARRAY);
         this.accountGroupId = getRandomElement(ACCOUNT_GROUP_ARRAY);
         this.balance = generateRandomDouble();
         this.currency = getRandomElement(CURRENCY_ARRAY);
@@ -34,6 +37,7 @@ public class DataPojo {
                 "\'" + accountType + "\'" + "," +
                 accountNumber + "," +
                 "\'" + assetClassL1 + "\'" + "," +
+                "\'" + assetClassL2 + "\'" + "," +
                 "\'" + accountGroupId + "\'" + "," +
                 balance + "," +
                 "\'" + currency + "\'";
