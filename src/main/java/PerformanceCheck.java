@@ -15,12 +15,10 @@ public class PerformanceCheck {
     private static final String AGGREGATE_BALANCE_BY_ACCOUNT_TYPE = "Select sum(BALANCE),ACCOUNT_TYPE from " +
             "test_data group by ACCOUNT_TYPE";
 
-
     public void doPerfCheck() {
-
         executeQuery(AGGREGATE_BALANCE_BY_ACCOUNT_GROUP_ID);
         executeQuery(AGGREGATE_BALANCE_BY_ACCOUNT_TYPE);
-
+        
     }
 
     private void executeQuery(String query) {
@@ -38,12 +36,9 @@ public class PerformanceCheck {
                 Object myColumn = rs.getObject(2);
                 System.out.println("\tRow: " + myKey + " : " + myColumn);
             }
-
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         System.out.println("END:::::" + new Date());
     }
 }

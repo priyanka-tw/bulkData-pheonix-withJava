@@ -12,11 +12,12 @@ public class InsertDataInDb {
             "  ACCOUNT_KEY      integer NOT NULL PRIMARY KEY,\n" +
             "  ACCOUNT_TYPE     VARCHAR(100),\n" +
             "  ACCOUNT_NUMBER   integer,\n" +
-            "  ASSET_CLASS_L1      VARCHAR(100),\n" +
-            "  ASSET_CLASS_L2      VARCHAR(100),\n" +
+            "  ASSET_CLASS_L1   VARCHAR(100),\n" +
+            "  ASSET_CLASS_L2   VARCHAR(100),\n" +
             "  ACCOUNT_GROUP_ID VARCHAR(100),\n" +
             "  BALANCE          DECIMAL,\n" +
-            "  CURRENCY         VARCHAR(100)\n" +
+            "  CURRENCY         VARCHAR(100),\n" +
+            "  TEST_DATE        DATE \n" +
             ")";
 
     private static void createTable() {

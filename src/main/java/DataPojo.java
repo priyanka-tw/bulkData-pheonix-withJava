@@ -1,5 +1,7 @@
 import org.apache.commons.math3.random.RandomDataGenerator;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.Random;
 
 public class DataPojo {
@@ -12,6 +14,7 @@ public class DataPojo {
     private String accountGroupId;
     private Double balance;
     private String currency;
+    private LocalDate date;
 
     private static final String[] ACCOUNT_TYPE_ARRAY = {"SAVING", "SAVING_PLUS", "CURRENT"};
     private static final String[] ASSET_CLASS_ARRAY = {"CASH", "EQUITY"};
@@ -29,6 +32,7 @@ public class DataPojo {
         this.accountGroupId = getRandomElement(ACCOUNT_GROUP_ARRAY);
         this.balance = generateRandomDouble();
         this.currency = getRandomElement(CURRENCY_ARRAY);
+        this.date = generateRandomDate();
     }
 
     @Override
@@ -40,7 +44,8 @@ public class DataPojo {
                 "\'" + assetClassL2 + "\'" + "," +
                 "\'" + accountGroupId + "\'" + "," +
                 balance + "," +
-                "\'" + currency + "\'";
+                "\'" + currency + "\'" + "," +
+                "\'" + date + "\'";
     }
 
     private Long generateRandomLong() {
@@ -53,5 +58,15 @@ public class DataPojo {
 
     private String getRandomElement(String[] array) {
         return array[new RandomDataGenerator().nextInt(0, (array.length - 1))];
+    }
+
+    private LocalDate generateRandomDate() {
+
+        Random random = new Random();
+        int minDay = (int) LocalDate.of(1950, 1, 1).toEpochDay();
+        int maxDay = (int) LocalDate.of(2018, 1, 1).toEpochDay();
+        long randomDay = minDay + random.nextInt(maxDay - minDay);
+
+        return LocalDate.ofEpochDay(randomDay);
     }
 }
