@@ -22,12 +22,16 @@ public class PerformanceCheck {
     private static final String ORDER_BY_DATE = "SELECT SUM(BALANCE),TEST_DATE FROM " +
             "TEST_DATA GROUP BY TEST_DATE ORDER BY TEST_DATE";
 
+    private static final String MULTIPLE_AGGREGATION = "select  asset_class_l1, asset_class_l2, account_type, sum(balance) " +
+            "from test_data where account_group_id ='111'  group by ASSET_CLASS_L1, ASSET_CLASS_L2, account_type";
+
     public void doPerfCheck() {
 
         executeQuery(AGGREGATE_BALANCE_BY_ACCOUNT_GROUP_ID);
         executeQuery(AGGREGATE_BALANCE_BY_ACCOUNT_TYPE);
         executeQuery(AGGREGATE_BALANCE_WITH_L1L2_ACCOUNT_TYPE);
         executeQuery(ORDER_BY_DATE);
+        executeQuery(MULTIPLE_AGGREGATION);
     }
 
     private void executeQuery(String query) {
@@ -38,12 +42,9 @@ public class PerformanceCheck {
             ps = dbConnection.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
 
-            System.out.println("Table Values");
-
             while (rs.next()) {
                 Object myKey = rs.getObject(1);
                 Object myColumn = rs.getObject(2);
-                System.out.println("\tRow: " + myKey + " : " + myColumn);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -53,3 +54,5 @@ public class PerformanceCheck {
         System.out.println("MILLS TAKEN::::" + (endTime - startTime));
     }
 }
+
+

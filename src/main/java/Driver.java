@@ -4,15 +4,17 @@ public class Driver {
 
     public static void main(String args[]) {
 
-        final int QUERY_COUNT = 100;
+        final int QUERY_COUNT = 4999;
 
-        String nQueries = QueryGenerator.generateNQueries(QUERY_COUNT);
-        System.out.println("queries generated");
-        InsertDataInDb.insertBulkData(nQueries);
-        System.out.println("data inserted");
-       // FileGenerator.writePhoenixData(nQueries);
+//        String nQueries = QueryGenerator.generateNQueries(QUERY_COUNT);
+//        System.out.println("queries generated");
+//
+//        InsertDataInDb.insertBulkData(nQueries);
+//        System.out.println("data inserted");
 
-      //  new PerformanceCheck().doPerfCheck();
+//        FileGenerator.writePhoenixData(nQueries);
+//
+        new PerformanceCheck().doPerfCheck();
 
     }
 }

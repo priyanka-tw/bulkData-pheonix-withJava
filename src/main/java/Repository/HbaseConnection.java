@@ -6,7 +6,7 @@ public class HbaseConnection {
 
     private volatile static Connection connection;
 
-    public static Connection getDbConnection() throws ClassNotFoundException {
+    public static Connection getDbConnection() {
         try {
             if (connection == null) {
                 synchronized (Connection.class) {
@@ -14,29 +14,25 @@ public class HbaseConnection {
 
                         Class.forName("org.apache.phoenix.queryserver.client.Driver");
                         connection = DriverManager.getConnection
-                                ("jdbc:phoenix:thin:url=http://ec2-18-191-185-255.us-east-2.compute.amazonaws.com:8765;serialization=PROTOBUF");
+                                ("jdbc:phoenix:thin:url=http://ec2-18-191-186-68.us-east-2.compute.amazonaws.com:8765;serialization=PROTOBUF");
 
-//                        connection = DriverManager.getConnection
-//                                ("jdbc:phoenix:ec2-18-191-185-255.us-east-2.compute.amazonaws.com:");
                     }
                 }
             }
-
-            System.out.println("=========connection::" + connection);
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
         return connection;
     }
 
-    public static Connection closeDbConnection(Connection connection) {
+    public static void closeDbConnection(Connection innerConnection) {
 
-        if (connection != null) {
+        if (innerConnection != null) {
             try {
-                connection.close();
+                innerConnection.close();
             } catch (Exception e) {
             }
         }
-        return null; // need to work on this
+        connection = null;
     }
 }

@@ -1,12 +1,11 @@
 import org.apache.commons.math3.random.RandomDataGenerator;
 
-import java.sql.Date;
 import java.time.LocalDate;
 import java.util.Random;
 
 public class DataPojo {
 
-    private Long accountKey;
+    private static Long accountKey = 2990397L;
     private String accountType;
     private Long accountNumber;
     private String assetClassL1;
@@ -24,7 +23,7 @@ public class DataPojo {
 
     public DataPojo() {
 
-        this.accountKey = generateRandomLong();
+        this.accountKey = generateRandomAccountKey();
         this.accountType = getRandomElement(ACCOUNT_TYPE_ARRAY);
         this.accountNumber = generateRandomLong();
         this.assetClassL1 = getRandomElement(ASSET_CLASS_ARRAY);
@@ -48,8 +47,13 @@ public class DataPojo {
                 "\'" + date + "\'";
     }
 
+    private Long generateRandomAccountKey() {
+        accountKey++;
+        return accountKey;
+    }
+
     private Long generateRandomLong() {
-        return new RandomDataGenerator().nextLong(20000000L, 40000000L);
+        return new RandomDataGenerator().nextLong(10000000L, 80000000L);
     }
 
     private Double generateRandomDouble() {
